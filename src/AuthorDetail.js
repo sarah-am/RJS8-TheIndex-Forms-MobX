@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 // Components
 import BookTable from "./BookTable";
+import AddBookModal from "./AddBookModal";
 
 // Stores
 import authorStore from "./stores/authorStore";
@@ -26,6 +27,7 @@ class AuthorDetail extends Component {
           />
         </div>
         <BookTable books={books} />
+        <AddBookModal authorID={author.id} />
       </div>
     );
   }
