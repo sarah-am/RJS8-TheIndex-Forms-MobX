@@ -6,7 +6,7 @@ const instance = axios.create({
 });
 
 function errToArray(err) {
-  return Object.keys(err).map(key => `${key}: ${err[key]}`);
+  return Object.keys(err).map(key => `${key}: ${err[key]}`); //takes the key and adds any error that exists
 }
 
 class AuthorStore {
@@ -33,8 +33,9 @@ class AuthorStore {
     try {
       const res = await instance.post("/api/authors/", newAuthor);
       const author = res.data;
-      this.authors.unshift(author);
-      this.errors = null;
+      this.authors.unshift(author); //opposite of .push; places it at the beginning of the list
+      this.errors = null; //ensures no errors
+      this.setState({ authors: newAuthor });
     } catch (err) {
       this.errors = errToArray(err.response.data);
     }
